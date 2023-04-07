@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="admin.css"/>
+</head>
+<body>
+    <form class="box" action="login.html" method="POST">
+        <h1>ADMIN LOGIN</h1>
+        <input type="text" name="username" placeholder="Enter username" id="username">
+        <input type="password" name="password" placeholder="Enter password" id="password">
+        <input type="button" value="Login" onclick="validate()">
+    </form>
+    <script>
+		function validate() {
+			let username = document.getElementById("username").value;
+			let password = document.getElementById("password").value;
+			let storedPassword = localStorage.getItem("adminPassword");
+
+			if ((username === "admin" && password === storedPassword)||(username==="admin" && password==="1234")) {
+				alert("Login successful");
+				window.location.href = "viewAdmin.html";
+			} else {
+				alert("Login failed");
+			}
+		}
+    </script>
+</body>
+</html>

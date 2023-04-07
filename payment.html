@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #db1f1f;
+         width:300px;
+        padding:30px;
+        position:absolute;
+        top:50%;
+        left:50%;
+         transform: translate(-50%,-50%);
+        background: rgba(28, 161, 23, 0.4);
+        text-align: center;
+
+      }
+      h1 {
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="text"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px #121a0f;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      select,
+      input[type="number"],
+      input[type="text"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px #ccc;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      button {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #b32ab8;
+      }
+      .wrap{
+        background-color:rgb(202, 200, 200);
+            background-color:rgba(200, 200, 200,0.5);
+            border-radius: 20px;
+            padding:30px;
+            margin:40px auto;
+            width:70%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Payment Page</h1>
+    <form action="login.html" method="POST" class="wrap">
+      <label for="Name">Full Name</label>
+      <input type="text" name="name" id="name" placeholder="Enter your name" required/>
+      <label for="amount">Amount:</label>
+      <input type="text" id="amount" name="amount" placeholder="Pay amount">
+      <!--<textarea name="comment" id="comment" >Enter Your Address:</textarea>-->
+      <label for="paymentMethod">paymentMethod:</label>
+      <select name="paymentMethod" id="paymentMethod">
+        <option value="select">Select Payment Here</option>
+        <option value="gpay">UPI(GPay/PhonePay/Paytm)</option>
+        <option value="debit">Debit Card/Credit Card</option>
+        <option value="etbanking">NetBanking</option>
+      </select>
+      <label for="Name">PIN</label>
+      <input type="text" name="pin" id="pin" placeholder="Enter your pin" required/>
+      <button type="button" onclick="storePaymentData()">Complete Payment</button>
+      
+    </form>
+
+    <script>
+      function storePaymentData() {
+        // Get payment data from input fields
+        const amount = document.getElementById("amount").value;
+        const paymentMethod = document.getElementById("paymentMethod").value;
+        const name = document.getElementById("name").value;
+        const pin = document.getElementById("pin").value;
+
+        if(paymentMethod==""){
+            alert("Plese select payment method");
+            return ;
+        }
+
+        // Store payment data in localStorage
+        localStorage.setItem("paymentData", JSON.stringify({
+          name:name,
+          amount: amount,
+          paymentMethod: paymentMethod,
+          pin:pin,
+
+        }));
+        alert(amount+paymentMethod+name+pin);
+        // return storePaymentData();
+   var ask= confirm("do you wish to continue the payment?");
+       if(ask){
+        // Redirect to confirmation page
+           window.location.replace( "confirmation.html");
+       }
+      }
+    </script>
+  </body>
+</html>
